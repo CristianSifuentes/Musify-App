@@ -12,7 +12,7 @@ var Song = require('../models/song');
 function getAlbum(req, res) {
 
     var albumId = req.params.id;
-    console.log('albumId : ' + albumId);
+
 
     Album.findById(albumId).populate({ path: 'artist' }).exec((err, album) => {
         if (err) {

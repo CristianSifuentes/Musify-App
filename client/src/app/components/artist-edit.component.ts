@@ -43,7 +43,9 @@ export class ArtistEditComponent implements OnInit {
     }
 
     getArtist() {
-
+        this._route.params.forEach((params: Params) => {
+           let id = params['id'];
+        });
 
 
     }
