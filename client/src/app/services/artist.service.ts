@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/throw';
 import { GLOBAL } from './global';
 import { Artist } from '../models/artist';
 
 @Injectable()
 export class ArtistService {
     public url: string;
+    public artist: Artist;
 
     constructor(private _http: Http) {
         this.url = GLOBAL.url;
@@ -26,26 +29,24 @@ export class ArtistService {
     }
 
 
-    getArtist(token, artist: Artist) {
+    getArtist(token, id: string): Observable<any> {
         console.log('entro a getArtist');
-        let params = JSON.stringify(artist);
-        console.log('params ... ', params);
-        let id = params['_id'];
-        console.log('Después ' + id);
         let headers = new Headers({
             'Content-Type': 'application/json',
             'Authorization': token
         });
-
+        let params = id;
         let options = new RequestOptions({
             headers: headers
         });
-        return this._http.get(this.url + 'obtenerArtista/' + id , options).map(res => 
-            {
-            res.json()
-            console.log(res.json())
-        
-        });
+        return this._http.get(this.url + 'obtenerArtista/' + params, { headers: headers }).map(res => res.json());
+
+        /*return this._http.get(this.url + 'obtenerArtista/' + id, options)
+            .map(res => {
+                return res;
+
+
+            });*/
     }
 
     addArtist(token, artist: Artist) {
@@ -64,7 +65,6 @@ export class ArtistService {
             'Content-Type': 'application/json',
             'Authorization': token
         });
-        /*http://localhost:3977/api/artist*/
         return this._http.put(this.url + 'actualizarArtista/' + id, params, { headers: headers }).map(res => res.json());
     }
 

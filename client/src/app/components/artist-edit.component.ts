@@ -42,13 +42,63 @@ export class ArtistEditComponent implements OnInit {
         this.getArtist();
     }
 
+
     getArtist() {
         this._route.params.forEach((params: Params) => {
-           let id = params['id'];
+            let id = params['id'];
+            console.log(id);
+            this._artistService.getArtist(this.token, id).subscribe(
+                response => {
+                    this.artist = response.artist;
+
+                    if (!response) {
+                        this.alertMessage = 'Error en el servidor';
+                    } else {
+                        this.artist = response.artist;
+                        console.log("esto tiene la variable " + this.artist);
+
+                    }
+                },
+                error => {
+                    var errorMessage = <any>error;
+
+                    if (errorMessage != null) {
+                        var body = JSON.parse(error._body);
+                        this.alertMessage = body.message;
+                        console.log(error)
+                    }
+                }
+            );
+        });
+    }
+    /*getArtist() {
+        this._route.params.forEach((params: Params) => {
+            let id = params['id'];
+            this._artistService.getArtist(this.token, id).subscribe(
+                response => {
+                    this.artist = response.artist;
+            
+                    if(!response.artist){
+                    this._router.navigate(['/']);
+                    }else{
+                         this.artist = response.artist;
+                    }
+                }, , error => {
+                    var errorMessage = <any>error;
+
+                    if (errorMessage != null) {
+                        var body = JSON.parse(error._body);
+                        this.alertMessage = body.message;
+                        console.log(error)
+                    }
+                }
+
+            );
+
         });
 
 
-    }
+    }*/
 
 
 }
