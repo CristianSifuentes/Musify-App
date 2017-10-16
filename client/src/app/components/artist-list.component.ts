@@ -4,7 +4,6 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { GLOBAL } from '../services/global';
 import { UserService } from '../services/user.service';
 import { ArtistService } from '../services/artist.service';
-
 import { Artist } from '../models/artist';
 
 @Component({
@@ -47,7 +46,7 @@ export class ArtistListComponent implements OnInit {
     this._route.params.forEach(
       (params: Params) => {
         let page = + params['page'];
-        if (page) {
+        if (!page) {
           page = 1;
         } else {
           this.next_page = page + 1;
