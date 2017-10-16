@@ -18,7 +18,7 @@ export class UserEditComponent implements OnInit {
   public alertMessage;
   public url: string;
 
-  
+
   constructor(
     private _userService: UserService
   ) {
@@ -38,7 +38,7 @@ export class UserEditComponent implements OnInit {
     this.user = this.identity;
     this.url = GLOBAL.url;
   }
-   
+
   onSubmit() {
     console.log(this.user);
     this._userService.update_user(this.user).
@@ -63,11 +63,11 @@ export class UserEditComponent implements OnInit {
               (result: any) => {
                 this.user.image = result.image;
                 localStorage.setItem('identity', JSON.stringify(this.user));
-                let imagePath = this.url + 'obtenerImagenUsuario/'+this.user.image;
+                let imagePath = this.url + 'obtenerImagenUsuario/' + this.user.image;
                 document.getElementById('image-logged').setAttribute('src', imagePath);
                 console.log(this.user);
               }
-              ); 
+              );
           }
           this.alertMessage = 'El usuario se ha actualizadó correctamente';
         }
