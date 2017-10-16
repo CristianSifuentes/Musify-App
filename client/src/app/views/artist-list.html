@@ -2,3 +2,11 @@
   <h1>{{ titulo }}</h1>
   <a [routerLink]="['/crear-artista']" *ngIf="identity && identity.role == 'ROLE_ADMIN'" class="btn btn-default">Añadir artista</a>
 </div>
+
+<div class="clarefix">
+  <ul class="artists-list" *ngIf="identity">
+    <li *ngFor="let artist of artists" class="col-lg-3 artits-item">
+      {{ artist.name }}
+    </li>
+  </ul>
+</div>
