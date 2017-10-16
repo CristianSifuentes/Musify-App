@@ -47,7 +47,7 @@ export class ArtistDetailComponent implements OnInit {
                         this.alertMessage = 'Error en el servidor';
                     } else {
                         this.artist = response.artist;
-                        console.log("esto tiene la variable " + this.artist);
+                         //sacar los albumns del artista
 
                     }
                 },
