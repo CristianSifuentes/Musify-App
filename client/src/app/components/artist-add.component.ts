@@ -24,13 +24,13 @@ export class ArtistAddComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
-    private _artistService : ArtistService
+    private _artistService: ArtistService
   ) {
     this.titulo = 'Crear nuevo artista';
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.url = GLOBAL.url;
-    this.artist = new Artist('','','');
+    this.artist = new Artist('', '', '');
     console.log(this.identity);
     console.log(this.token);
   }
@@ -39,30 +39,30 @@ export class ArtistAddComponent implements OnInit {
     console.log('artist-add.component.ts cargado');
   }
 
-  onSubmit(){
+  onSubmit() {
     console.log(this.artist);
     this._artistService.addArtist(this.token, this.artist).subscribe(
-    response => {
+      response => {
         this.artist = response.artist;
 
-        if(!response.artist){
-            this.alertMessage = 'Error en el servidor';
-        }else{
+        if (!response.artist) {
+          this.alertMessage = 'Error en el servidor';
+        } else {
           this.alertMessage = 'El artista de ha creado correctamente!';
           this.artist = response.artist;
-         // this._router.navigate(['editar-artista'],response.artist_id);
+          this._router.navigate(['/editar-artista', response.artist._id]);
         }
-    }, 
-    error => {
-      var errorMessage = <any>error;
+      },
+      error => {
+        var errorMessage = <any>error;
 
-      if(errorMessage != null){
-        var body = JSON.parse(error._body);
-        this.alertMessage = body.message;
-        console.log(error)
+        if (errorMessage != null) {
+          var body = JSON.parse(error._body);
+          this.alertMessage = body.message;
+          console.log(error)
+        }
       }
-    }
-  );
+    );
 
   }
 }
