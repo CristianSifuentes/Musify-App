@@ -73,7 +73,6 @@ function saveUser(req,res){
 //Método que se encarga hacer el login
 function loginUser(req, res){
   var params = req.body;
-
    var email = params.email;
    var password = params.password;
    User.findOne({
