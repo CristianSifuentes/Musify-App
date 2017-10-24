@@ -10,7 +10,7 @@ import { ArtistAddComponent } from './components/artist-add.component';
 import { HomeComponent } from './components/home.component';
 import { ArtistEditComponent } from './components/artist-edit.component';
 import { ArtistDetailComponent } from './components/artist-detail.component';
-import { AlbumAddComponent } from './components/albumn-add.component';
+import { AlbumAddComponent } from './components/album-add.component';
 import { AlbumEditComponent } from './components/album-edit.component';
 
 

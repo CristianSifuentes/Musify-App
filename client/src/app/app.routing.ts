@@ -9,7 +9,7 @@ import { ArtistDetailComponent } from './components/artist-detail.component';
 
 
 // import album
-import { AlbumAddComponent } from './components/albumn-add.component';
+import { AlbumAddComponent } from './components/album-add.component';
 import { AlbumEditComponent } from './components/album-edit.component';
 
 

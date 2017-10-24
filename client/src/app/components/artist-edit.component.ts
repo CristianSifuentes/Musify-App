@@ -46,7 +46,6 @@ export class ArtistEditComponent implements OnInit {
 
     onSubmit() {
 
-
         this._route.params.forEach((params: Params) => {
             let id = params['id'];
             this._artistService.editArtist(this.token, id, this.artist)
@@ -67,7 +66,7 @@ export class ArtistEditComponent implements OnInit {
                             (error) => {
                                 console.log(error);
                             }
-                            )
+                            );
                     }
                 },
                 error => {

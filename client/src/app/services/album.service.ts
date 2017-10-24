@@ -26,8 +26,27 @@ export class AlbumService {
         return this._http.post(this.url + 'registarAlbum', params, { headers: headers }).map(res => res.json());
     }
 
+    getAlbum(token, id: string) {
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
 
+        let options = new RequestOptions({ headers: headers });
+        return this._http.get(this.url + "obtenerAlbum/" + id, options).map(res => res.json());
+    }
 
+    editAlbum(token, id: string, album: Album) {
+        let params = JSON.stringify(album);
+
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+
+        return this._http.put(this.url + "actualizarAlbum/" + id, params, { headers: headers })
+            .map(res => res.json());
+    }
 }
 
 
