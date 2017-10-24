@@ -16,7 +16,7 @@ import { Album } from '../models/album';
 export class AlbumAddComponent implements OnInit {
     public titulo: string;
     public artist: Artist;
-    public albumn: Album;
+    public album: Album;
     public identity;
     public token;
     public url: string;
@@ -27,12 +27,12 @@ export class AlbumAddComponent implements OnInit {
         private _router: Router,
         private _userService: UserService,
         private _artistService: ArtistService    ) {
-        this.titulo = 'Crear albumn ';
+        this.titulo = 'Crear albumn';
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
         this.artist = new Artist('', '', '');
-        this.albumn = new Album('', '', '','', '');
+        this.album = new Album('', '', '','', '');
 
     }
 
