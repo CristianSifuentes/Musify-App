@@ -100,17 +100,24 @@ export class AlbumEditComponent implements OnInit {
                     } else {
                         this.alertMessage = 'El album de ha actulizado correctamente!';
 
-                        this._uploadService.makeFileRequest(this.url + 'actualizarImagenAlbum/' + id,
-                            [], this.fileToUpload,
-                            this.token,
-                            'image').then(
-                            (result) => {
-                                this._router.navigate(['/artistas', this.album._id]);
-                            },
-                            (error) => {
-                                console.log(error);
-                            }
-                            );
+                        if (!this.fileToUpload) {
+                            //Redirigir
+                            this._router.navigate(['/artista', response.album.artist]);
+                        } else {
+                            this._uploadService.makeFileRequest(this.url + 'actualizarImagenAlbum/' + id,
+                                [], this.fileToUpload,
+                                this.token,
+                                'image').then(
+                                (result) => {
+                                    this._router.navigate(['/artista', response.album.artist]);
+                                },
+                                (error) => {
+                                    console.log(error);
+                                }
+                                );
+                        }
+
+
                     }
                 },
                 error => {
