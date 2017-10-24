@@ -18,7 +18,7 @@ const appRoutes: Routes = [
   { path: 'crear-artista', component: ArtistAddComponent },
   { path: 'editar-artista/:id', component: ArtistEditComponent },
   { path: 'artista/:id', component: ArtistDetailComponent },
-  { path: 'crear-ambum/:artist', component: AlbumAddComponent },
+  { path: 'crear-album/:artist', component: AlbumAddComponent },
   { path: 'mis-datos', component: UserEditComponent },
   { path: '**', component: ArtistListComponent }
 ];
