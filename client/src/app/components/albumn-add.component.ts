@@ -26,18 +26,29 @@ export class AlbumAddComponent implements OnInit {
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
-        private _artistService: ArtistService    ) {
+        private _artistService: ArtistService) {
         this.titulo = 'Crear albumn';
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
         this.url = GLOBAL.url;
         this.artist = new Artist('', '', '');
-        this.album = new Album('', '', '','', '');
+        this.album = new Album('', '', '', '', '');
 
     }
 
     ngOnInit() {
         console.log('album-add.component cargado');
+    }
+
+    onSubmit() {
+
+        this._route.params.forEach((params: Params) => {
+            let artist_id = params['artist'];
+            this.album.artist = artist_id;
+        });
+
+        console.log(this.album);
+
     }
 
 }
