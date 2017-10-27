@@ -59,7 +59,7 @@ export class ArtistDetailComponent implements OnInit {
                                 if (!response.albums) {
                                     this.alertMessage = 'Este artista no tiene albums';
                                 } else {
-                                    this.albums = response.albumns;
+                                    this.albums = response.albums;
                                 }
 
                             },

@@ -72,7 +72,6 @@ function saveAlbum(req, res) {
 function getAlbums(req, res) {
 
     var artistId = req.params.artist;
-    console.log('si llego!!!!!!' + artistId);
     if (!artistId) {
         //sacar todos los albums de la bbdd
         var find = Album.find({}).sort('title');

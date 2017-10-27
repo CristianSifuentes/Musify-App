@@ -7,7 +7,7 @@
     <div>
       <h1>{{artist.name}}</h1>
       <p class="description">{{ artist.description }}</p>
-      <a *ngIf="identity.role == 'ROLE_ADMIN'" [routerLink]="['/crear-album', artist._id]"  class="btn btn-default">
+      <a *ngIf="identity.role == 'ROLE_ADMIN'" [routerLink]="['/crear-album', artist._id]" class="btn btn-default">
         Añadir album
       </a>
     </div>
@@ -15,6 +15,22 @@
   <div class="clearfix"></div>
   <div id="gallery-albums" *ngIf="albums">
     <!-- LISTAR TODOS LOS ALBUMNS -->
+    <ul class="albums-list">
+      <li *ngFor="let album of albums" class="col-lg-4 album-item">
+        <div class="picture">
+          <img src="{{ url + 'obtenerImagenAlbum/' + album.image}}" />
+        </div>
+        <div class="title">
+          <p>
+            <a href="#">{{ album.title}}</a>
+          </p>
+          <p>
+            <a [routerLink]="['/artist, album.artist._id']">{{ album.artist.name}}</a>
+          </p>
+        </div>
+      </li>
+
+    </ul>
 
   </div>
 
