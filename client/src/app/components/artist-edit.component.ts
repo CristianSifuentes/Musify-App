@@ -56,17 +56,23 @@ export class ArtistEditComponent implements OnInit {
                     } else {
                         this.alertMessage = '¡El artista se ha actualizado correctamente!';
                         //subir la imagen de arista
-                        this._uploadService.makeFileRequest(this.url + 'actualizarImagenArtista/' + id,
-                            [], this.fileToUpload,
-                            this.token,
-                            'image').then(
-                            (result) => {
-                                this._router.navigate(['/artistas', 1]);
-                            },
-                            (error) => {
-                                console.log(error);
-                            }
-                            );
+
+                        if (!this.fileToUpload) {
+                            this._router.navigate(['/artista', response.artist._id]);
+                        } else {
+                            this._uploadService.makeFileRequest(this.url + 'actualizarImagenArtista/' + id,
+                                [], this.fileToUpload,
+                                this.token,
+                                'image').then(
+                                (result) => {
+                                    this._router.navigate(['/artistas', 1]);
+                                },
+                                (error) => {
+                                    console.log(error);
+                                }
+                                );
+                        }
+
                     }
                 },
                 error => {
