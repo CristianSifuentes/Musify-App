@@ -15,6 +15,6 @@ api.get('/obtenerCancion/:id', md_aut.ensureAuth, SongController.getSong);
 api.get('/obtenerCanciones/:album?', md_aut.ensureAuth, SongController.getSongs);
 api.put('/actualizarCancion/:id', md_aut.ensureAuth,SongController.updateSongs);
 api.delete('/eliminarCancion/:id', md_aut.ensureAuth, SongController.deleteSong);
-api.post('/actualizarImagenCancion/:id', [md_aut.ensureAuth,md_upload], SongController.uploadFile);
-api.get('/obtenerImagenCancion/:imageFile',SongController.getSongFile);
+api.post('/actualizarFileCancion/:id', [md_aut.ensureAuth,md_upload], SongController.uploadFile);
+api.get('/obtenerFileCancion/:imageFile',SongController.getSongFile);
 module.exports = api;
