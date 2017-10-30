@@ -9,8 +9,8 @@
       <p>{{ album.year }}</p>
       <p>{{ album.description }}</p>
 
-      <a href="" class="btn btn-default" *ngIf="identity.role == 'ROLE_ADMIN'">
-          Añadir canción
+      <a [routerLink]="['/crear-tema', album._id]" class="btn btn-default" *ngIf="identity.role == 'ROLE_ADMIN'">
+        Añadir canción
       </a>
     </div>
   </div>
