@@ -39,24 +39,20 @@ export class AlbumDetailComponent implements OnInit {
     }
 
     getAlbum() {
-        console.log('El método funciona');
-    }
 
-
-    /*getArtist() {
         this._route.params.forEach((params: Params) => {
             let id = params['id'];
             console.log(id);
-            this._artistService.getArtist(this.token, id).subscribe(
+            this._albumService.getAlbum(this.token, id).subscribe(
                 response => {
-                    this.artist = response.artist;
+                    this.album = response.album;
 
                     if (!response) {
                         this.alertMessage = 'Error en el servidor';
                     } else {
-                        this.artist = response.artist;
+                        this.album = response.album;
                         //sacar los albumns del artista
-                        this._albumService.getAlbums(this.token, response.artist._id)
+                        /*this._albumService.getAlbums(this.token, response.artist._id)
                             .subscribe(
                             response => {
                                 if (!response.albums) {
@@ -76,7 +72,7 @@ export class AlbumDetailComponent implements OnInit {
                                     console.log(error)
                                 }
                             }
-                            );
+                            );*/
 
                     }
                 },
@@ -91,7 +87,10 @@ export class AlbumDetailComponent implements OnInit {
                 }
             );
         });
-    }*/
+    }
+
+
+
 
     onDeleteConfirm(id) {
         this.confirmado = id;

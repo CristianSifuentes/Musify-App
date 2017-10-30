@@ -86,9 +86,10 @@ body {
 }
 
 
-/*Detalle de artista*/
+/*Detalle de artista y album*/
 
-#artist-head-card .image {
+#artist-head-card .image,
+#album-head-card .image  {
   width: 130px;
   height: 130px;
   overflow: hidden;
@@ -96,7 +97,8 @@ body {
   margin-right: 30px;
 }
 
-#artist-head-card .image img {
+#artist-head-card .image img,
+#album-head-card .image img  {
   height: 150px;
 }
 
