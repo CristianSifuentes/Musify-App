@@ -8,26 +8,34 @@ var Artist = require('../models/artists');
 var Album = require('../models/album');
 var Song = require('../models/song');
 
-function getSong(req, res){
-     var songId = req.params.id;
-    Song.findById(songId).populate({path: 'album'}).exec((err, song) => {
-       if(err){
-           res.status(500).send({message: 'Error en la peticion'});
-       }else{
-           if(!song){
-               res.status(404).send({message : 'La cancion no existe'});
-           }else{
-                res.status(200).send({song});
-           }
+function getSong(req, res) {
+    var songId = req.params.id;
+    Song.findById(songId).populate({
+        path: 'album'
+    }).exec((err, song) => {
+        if (err) {
+            res.status(500).send({
+                message: 'Error en la peticion'
+            });
+        } else {
+            if (!song) {
+                res.status(404).send({
+                    message: 'La cancion no existe'
+                });
+            } else {
+                res.status(200).send({
+                    song
+                });
+            }
 
-       }
+        }
 
     });
-     
+
 
 }
 
-function saveSong(req, res){
+function saveSong(req, res) {
     var song = new Song();
     var params = req.body;
     song.number = params.number;
@@ -38,40 +46,42 @@ function saveSong(req, res){
     console.log(params);
 
     song.save((err, songStored) => {
-       if(err){
-           res.status(500).send({message: 'Error en el servidor'});   
-       }else{
-           if(!songStored){
-             res.status(404).send({message: 'No se ha insertado la cación'});
-           }else{
-             res.status(200).send({song: songStored});
-           }
-       }
+        if (err) {
+            res.status(500).send({
+                message: 'Error en el servidor'
+            });
+        } else {
+            if (!songStored) {
+                res.status(404).send({
+                    message: 'No se ha insertado la cación'
+                });
+            } else {
+                res.status(200).send({
+                    song: songStored
+                });
+            }
+        }
 
     });
 
-    
+
 }
 
-function getSongs(req, res){
-    
-    
+function getSongs(req, res) {
+
+
     var albumId = req.params.album;
 
-    if(!albumId){
-        var find = Song.find(
-            {
+    if (!albumId) {
+        var find = Song.find({
 
-            }
-            ).sort('number');
+        }).sort('number');
 
-    }else{
+    } else {
 
-        var find = Song.find(
-            { 
-                album: albumId
-            }
-            ).sort('number');
+        var find = Song.find({
+            album: albumId
+        }).sort('number');
     }
 
 
@@ -92,101 +102,131 @@ function getSongs(req, res){
             model: 'Artists'
 
         }
-    }).exec(function (err, songs){
+    }).exec(function (err, songs) {
 
-          if(err){
-               res.status(500).send({message: 'Error en la petición'});
-          }else{
-             if(!songs){
-                res.status(404).send({message: 'No hay canciones!'});
-             }else{
-                res.status(200).send({songs});
-             }
-          }
+        if (err) {
+            res.status(500).send({
+                message: 'Error en la petición'
+            });
+        } else {
+            if (!songs) {
+                res.status(404).send({
+                    message: 'No hay canciones!'
+                });
+            } else {
+                res.status(200).send({
+                    songs
+                });
+            }
+        }
 
     });
 }
 
-function updateSongs(req, res){
+function updateSongs(req, res) {
     var songId = req.params.id;
     var update = req.body;
     Song.findByIdAndUpdate(
-        songId, 
-        update, 
-        (err , songUpdated) => {
-             
-             if(err){
-                  res.status(500).send({ message: 'Error en el servidor'});
-             }else{
-                  if(!songUpdated){
-                       res.status(404).send({ message : 'No se ha actualizado la canción'});
-                  }else{
-                       res.status(200).send({song: songUpdated});
-                  }
-             }
+        songId,
+        update,
+        (err, songUpdated) => {
 
-         }
+            if (err) {
+                res.status(500).send({
+                    message: 'Error en el servidor'
+                });
+            } else {
+                if (!songUpdated) {
+                    res.status(404).send({
+                        message: 'No se ha actualizado la canción'
+                    });
+                } else {
+                    res.status(200).send({
+                        song: songUpdated
+                    });
+                }
+            }
+
+        }
     );
 }
 
-function deleteSong(req, res){
-   
-   var songId = req.params.id;
-   Song.findByIdAndRemove( 
-       songId, 
-       (err, songRemoved) => {
-           if(err){
-              res.status(500).send({message: 'Error en el servidor'});
-           }else{
-              if(!songRemoved){
-                  res.status(404).send({ message : 'No se ha eliminado la canción'});
-              }else{
-                  res.status(200).send({song: songRemoved});
-              }
-           }
-       }
-       );
+function deleteSong(req, res) {
+
+    var songId = req.params.id;
+    Song.findByIdAndRemove(
+        songId,
+        (err, songRemoved) => {
+            if (err) {
+                res.status(500).send({
+                    message: 'Error en el servidor'
+                });
+            } else {
+                if (!songRemoved) {
+                    res.status(404).send({
+                        message: 'No se ha eliminado la canción'
+                    });
+                } else {
+                    res.status(200).send({
+                        song: songRemoved
+                    });
+                }
+            }
+        }
+    );
 }
 
 //Método que sube una imagen a una carpeta del servidor
-function uploadFile(req,res){
+function uploadFile(req, res) {
 
     var songId = req.params.id;
     var file_name = 'No subido...';
-    if(req.files){
-       var file_path = req.files.file.path;
-       var file_split = file_path.split('\\');
-       var file_name = file_split[2];
-       var ext_split = file_name.split('\.');
-       var file_ext = ext_split[1];
-       console.log(ext_split);
-       if(file_ext == 'mp3' || file_ext == 'ogg'){
-          Song.findByIdAndUpdate(songId, {file: file_name}, (err, songUpdated) =>{
-             if(!songUpdated){
-                 res.status(404).send({menssage: 'No se ha podido actualizar la canción'});
-            }else{
-                res.status(200).send({song: songUpdated});
-            }
-          });
-       }else{
-         res.status(200).send( { message:'Extensión de archivo no válida' } );
-       }
+    if (req.files) {
+        var file_path = req.files.file.path;
+        var file_split = file_path.split('\\');
+        var file_name = file_split[2];
+        var ext_split = file_name.split('\.');
+        var file_ext = ext_split[1];
+        console.log(ext_split);
+        if (file_ext == 'mp3' || file_ext == 'ogg') {
+            Song.findByIdAndUpdate(songId, {
+                file: file_name
+            }, (err, songUpdated) => {
+                if (!songUpdated) {
+                    res.status(404).send({
+                        menssage: 'No se ha podido actualizar la canción'
+                    });
+                } else {
+                    res.status(200).send({
+                        song: songUpdated
+                    });
+                }
+            });
+        } else {
+            res.status(200).send({
+                message: 'Extensión de archivo no válida'
+            });
+        }
 
-    }else{
-        res.status(500).send({message : 'No ha subido ninguna canción'});
+    } else {
+        res.status(500).send({
+            message: 'No ha subido ninguna canción'
+        });
     }
 }
 
-function getSongFile(req, res){
-   var imageFile = req.params.imageFile;
-   var path_file = './uploads/song/'+imageFile;
-   fs.exists(path_file, function(exists){
-       if(exists){
-           res.sendFile(path.resolve(path_file));
-       }else{
-           res.status(200).send({ message : 'No existe la imagen'});
-       }
-   });
+function getSongFile(req, res) {
+    var songFile = req.params.songFile;
+    var path_file = './uploads/song/' + songFile;
+    fs.exists(path_file, function (exists) {
+        if (exists) {
+            res.sendFile(path.resolve(path_file));
+        } else {
+            res.status(200).send({
+                message: 'No existe la canción'
+            });
+        }
+    });
 
 }
 

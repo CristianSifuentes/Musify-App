@@ -37,7 +37,8 @@
     </p>
 
     <div *ngIf="is_edit">
-      <div class="song_image_for_edit" *ngIf="song.image != null">
+ 
+      <div class="song_image_for_edit" *ngIf="song.file != null">
         <audio controls>
           <source src="{{ url + 'obtenerFileCancion/' + song.file }}" type="audio/mpeg" /> Your browser does not support the audio element
 
