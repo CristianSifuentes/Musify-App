@@ -26,12 +26,11 @@
             <span class="glyphicon glyphicon-play" aria-hidden="true"></span>
           </a>
           {{ song.number + '. ' + song.name + ' - ' + song.duration }}
-          <p>
+          <div class="buttons" *ngIf="identity && identity.role == 'ROLE_ADMIN'">
             <a [routerLink]="['/editar-tema', song._id]" class="btn btn-warning">Editar</a>
-          </p>
-          <p>
             <a [routerLink]="['/editar-tema', song._id]" class="btn btn-danger">Borrar</a>
-          </p>
+          </div>
+          <div class="clearfix"></div>
         </div>
       </li>
     </ul>
