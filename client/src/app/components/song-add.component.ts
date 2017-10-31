@@ -57,7 +57,7 @@ export class SongAddComponent implements OnInit {
                 } else {
                     this.alertMessage = 'La canción se ha creado correctamente!';
                     this.song = response.song;
-                    //this._router.navigate(['/editar-song', response.song._id]);
+                    this._router.navigate(['/editar-tema', response.song._id]);
                 }
             },
             error => {
