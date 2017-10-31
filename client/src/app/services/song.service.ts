@@ -33,7 +33,7 @@ export class SongService {
             'Content-Type': 'application/json',
             'Authorization': token
         });
-        /*http://localhost:3977/api/artist*/
+
         return this._http.post(this.url + 'registarCancion', params, { headers: headers }).map(res => res.json());
     }
 
@@ -51,7 +51,32 @@ export class SongService {
     }
 
 
+    getSongs(token, albumId = null) {
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
 
+        let options = new RequestOptions({ headers: headers });
+
+        if (albumId == null) {
+            return this._http.get(this.url + "obtenerCanciones/", options).map(res => res.json());
+        } else {
+            return this._http.get(this.url + "obtenerCanciones/" + albumId, options).map(res => res.json());
+        }
+
+
+    }
+
+    deleteSong(token, id: string) {
+        let headers = new Headers({
+            'Content-Type': 'application/json',
+            'Authorization': token
+        });
+
+        let options = new RequestOptions({ headers: headers });
+        return this._http.delete(this.url + "eliminarCancion/" + id, options).map(res => res.json());
+    }
 
 
 }

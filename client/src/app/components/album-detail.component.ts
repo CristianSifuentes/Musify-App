@@ -4,17 +4,21 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { GLOBAL } from '../services/global';
 import { UserService } from '../services/user.service';
 import { AlbumService } from '../services/album.service';
+import { SongService } from '../services/song.service';
+
 
 import { Album } from '../models/album';
+import { Song } from '../models/song';
 
 @Component({
     selector: 'album-detail',
     templateUrl: '../views/album-detail.html',
-    providers: [UserService, AlbumService]
+    providers: [UserService, AlbumService, SongService]
 })
 
 export class AlbumDetailComponent implements OnInit {
     public album: Album;
+    public songs: Song[];
     public identity;
     public token;
     public url: string;
@@ -24,7 +28,8 @@ export class AlbumDetailComponent implements OnInit {
         private _route: ActivatedRoute,
         private _router: Router,
         private _userService: UserService,
-        private _albumService: AlbumService
+        private _albumService: AlbumService,
+        private _songService: SongService
     ) {
         this.identity = this._userService.getIdentity();
         this.token = this._userService.getToken();
@@ -51,18 +56,17 @@ export class AlbumDetailComponent implements OnInit {
                         this.alertMessage = 'Error en el servidor';
                     } else {
                         this.album = response.album;
-                        //sacar los albumns del artista
-                        /*this._albumService.getAlbums(this.token, response.artist._id)
+                        //sacar las canciones del album
+                        this._songService.getSongs(this.token, response.album._id)
                             .subscribe(
                             response => {
-                                if (!response.albums) {
+                                if (!response.songs) {
                                     this.alertMessage = 'Este artista no tiene albums';
                                 } else {
-                                    this.albums = response.albums;
+                                    this.songs = response.songs;
                                 }
 
                             },
-
                             error => {
                                 var errorMessage = <any>error;
 
@@ -72,8 +76,7 @@ export class AlbumDetailComponent implements OnInit {
                                     console.log(error)
                                 }
                             }
-                            );*/
-
+                            );
                     }
                 },
                 error => {
@@ -88,9 +91,6 @@ export class AlbumDetailComponent implements OnInit {
             );
         });
     }
-
-
-
 
     onDeleteConfirm(id) {
         this.confirmado = id;

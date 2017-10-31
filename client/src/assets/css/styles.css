@@ -89,17 +89,17 @@ body {
 /*Detalle de artista y album*/
 
 #artist-head-card .image,
-#album-head-card .image  {
-  width: 130px;
-  height: 130px;
+#album-head-card .image {
+  width: 165px;
+  height: 165px;
   overflow: hidden;
   float: left;
   margin-right: 30px;
 }
 
 #artist-head-card .image img,
-#album-head-card .image img  {
-  height: 150px;
+#album-head-card .image img {
+  height: 165px;
 }
 
 
@@ -107,7 +107,7 @@ body {
 
 .artist_image_for_edit img,
 .album_image_for_edit {
-  width: 150px;
+  width: 165px;
 }
 
 .artists-list,
