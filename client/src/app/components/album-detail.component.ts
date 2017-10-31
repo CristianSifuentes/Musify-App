@@ -100,6 +100,32 @@ export class AlbumDetailComponent implements OnInit {
         this.confirmado = null;
     }
 
+    onDeleteSong(id) {
+        this._songService.deleteSong(this.token, id).subscribe(
+
+            response => {
+
+                if (!response.song) {
+                    alert('Error en el servidor');
+
+                } else {
+                    this.getAlbum();
+                }
+
+            },
+            error => {
+                var errorMessage = <any>error;
+
+                if (errorMessage != null) {
+                    var body = JSON.parse(error._body);
+                    this.alertMessage = body.message;
+                    console.log(error)
+                }
+            }
+
+        );
+    }
+
 
 
 
