@@ -72,33 +72,7 @@ export class SongAddComponent implements OnInit {
 
         );
 
-        /*this._albumService.addAlbum(this.token, this.album)
-            .subscribe(
 
-            response => {
-                this.album = response.album;
-
-                if (!response.album) {
-                    this.alertMessage = 'Error en el servidor';
-                } else {
-                    this.alertMessage = 'El album de ha creado correctamente!';
-                    this.album = response.album;
-                    this._router.navigate(['/editar-album', response.album._id]);
-                }
-            },
-            error => {
-                var errorMessage = <any>error;
-
-                if (errorMessage != null) {
-                    var body = JSON.parse(error._body);
-                    this.alertMessage = body.message;
-                    console.log(error)
-                }
-            }
-
-            );
-
-        console.log(this.album);*/
 
     }
 
