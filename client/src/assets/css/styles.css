@@ -193,6 +193,8 @@ body {
 #songs-list {
   margin: 0px;
   padding: 0px;
+  min-height: 800px;
+  padding-bottom: 200px;
 }
 
 .song-item {
