@@ -20,6 +20,8 @@ import { AlbumDetailComponent } from './components/album-detail.component';
 import { SongAddComponent } from './components/song-add.component';
 import { SongEditComponent } from './components/song-edit.component';
 
+//Import player
+import { PlayerComponent } from './components/player.component';
 
 const appRoutes: Routes = [
 
@@ -34,6 +36,7 @@ const appRoutes: Routes = [
   { path: 'mis-datos', component: UserEditComponent },
   { path: 'crear-tema/:album', component: SongAddComponent },
   { path: 'editar-tema/:id', component: SongEditComponent },
+  { path: 'player/:id', component: PlayerComponent },
   { path: '**', component: ArtistListComponent }
 ];
 
