@@ -139,8 +139,13 @@ body {
 
 /*albums*/
 
+.album-list{
+   min-height: 800px;
+   margin-bottom: 715px;
+}
 .album-item {
-  height: 357px;
+  height: 300px;
+  margin-bottom: 20px;
 }
 
 .artist-item .artist-image,
@@ -149,6 +154,11 @@ body {
   width: 100%;
   overflow: hidden;
   background: black;
+}
+
+.album-item .album-image {
+  height: 188px;
+
 }
 
 .artist-item .artist-image img {
