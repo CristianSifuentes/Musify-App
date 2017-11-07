@@ -1,6 +1,6 @@
 <div class="album-image">
     <span *ngIf="song.album">
-        <img if="play-image-album" src="{{ url + 'get-image-album/' + song.album.image }}" />
+        <img id="play-image-album" src="{{ url + 'get-image-album/' + song.album.image }}" />
 
     </span>
     <span *ngIf="!song.album">
@@ -13,11 +13,11 @@
         {{ song.name }}
     </span>
     |
-    <!--span id="play-song-artist">
+    <span id="play-song-artist">
         <span *ngIf="!song.album.artist">
             {{ song.album.artist.name }}
         </span>
-    </span-->
+    </span>
     <audio controls id="player">
         <source id="mp3-source" src="{{  url + 'obtenerFileCancion/'+ song.file}}" type="audio/mpeg" />
         Tú navegador no es compatible
