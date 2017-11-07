@@ -135,7 +135,7 @@ export class AlbumDetailComponent implements OnInit {
         (document.getElementById("player") as any).load();
         (document.getElementById("player") as any).play();
         document.getElementById("play-song-title").innerHTML = song.name;
-        document.getElementById("play-song-artist").innerHTML = song.album.artis.name;
+        /*document.getElementById("play-song-artist").innerHTML = song.album.artist.name;*/
         document.getElementById("play-image-album").setAttribute("src", image_path);
     }
 
